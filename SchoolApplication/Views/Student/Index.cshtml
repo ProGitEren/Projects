@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Student>
+
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<partial name="_Notification" />
+
+<div style="display: flex; justify-content: space-between; align-items: center;">
+    <h3 class="text-warning">Students</h3>
+    <a asp-controller="Student" asp-action="Create" class="btn btn-primary"> <i class="bi bi-person-plus"></i> &nbsp; New Student</a>
+</div>
+
+<table class="table table-bordered table-striped table-dark">
+    <thead class="thead-dark">
+        <tr>
+            <th class="text-primary">Name</th>
+            <th class="text-primary">Department</th>
+            <th class="text-primary">GPA</th>
+            <th class="text-primary">Grades</th>
+            <th class="text-primary"></th>
+        </tr>
+    </thead>
+    <hr />
+    
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="border-left text-info">@item.Name</td>
+                <td class="border-left text-info">@item.Department</td>
+                <td class="border-left text-info">@item.Gpa()</td>
+                <td class ="border-left text-info">
+                    @foreach (var grade in item.GetGrades())
+                    {
+                        <span>@grade.Key: @grade.Value</span>
+                        @if (!ReferenceEquals(grade, item.GetGrades().Last()))
+                        {
+                            <span>, </span>
+                        }
+                    }
+                </td>
+                <td>
+                    <div class="w-75 btn-group" role="group">
+                        <a style="text-decoration:none;margin-right:auto; color:hsl(45, 47%, 57%)" asp-controller="Student" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pen"></i>Edit</a>
+                        <a style="text-decoration:none;" class="text-danger" asp-controller="Student" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash2-fill"></i>Delete</a>
+                    </div>
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>

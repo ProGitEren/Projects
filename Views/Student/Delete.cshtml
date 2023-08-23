@@ -1,0 +1,62 @@
+﻿@model Student
+
+
+<form method="post">
+    @*Since the inputs are enabled the primary key is not automatically posted so we need to have a hidden primary id key input*@
+    <input asp-for="Id" hidden />
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Delete Student</h2>
+            <hr />
+            <br>
+            <hr />
+           
+
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label">Student Name</label>
+                <input asp-for="Name" placeholder="Eren" disabled class="form-control bg-light text-dark" />
+                
+            </div>
+            <div class="mb-3">
+                <label asp-for="Department" class="form-label">Student Department</label>
+                <select asp-for="Department" disabled class="form-select bg-light text-dark">
+                    <option value="Machine Engineering" class="form-control">Machine Engineering</option>
+                    <option value="Electrical Engineering" class="form-control">Electrical Engineering</option>
+                    <option value="Computer Science" class="form-control">Computer Science</option>
+                    <option value="Chemical Engineering" class="form-control">Chemical Engineering</option>
+                    <option value="Industrial Engineering" class="form-control">Industrial Engineering</option>
+                    <option value="Medicine" class="form-control">Medicine</option>
+                    <option value="Psychology" class="form-control">Psychology</option>
+                    <option value="Media and Design" class="form-control">Media and Design</option>
+                    <option value="Economy" class="form-control">Economy</option>
+                    <option value="Bussiness" class="form-control">Bussiness</option>
+                </select>
+
+
+            </div>
+            <div class="mb-3">
+
+                <label asp-for="Price" class="form-label">Student Price</label>
+                <input asp-for="Price" type="number" value="100000" disabled class="form-control bg-light text-dark" step="2500" />
+                <text style="display:block;" class="text-warning">School is 250000$ please be aware that your price should be bigger.</text>
+               
+            </div>
+
+            <hr />
+
+            <div style="margin-bottom: 20px;"></div>
+
+            <button type="submit" class="btn btn-danger" style="height:50px;width:150px;margin:12px;border-radius:15px;font-size:20px;">Delete</button>
+            <a asp-controller="Student" asp-action="Index" class="btn btn-secondary" style="height:50px;width:150px;margin:12px;border-radius:15px;font-size:20px;">Back To List</a>
+        </div>
+
+
+
+    </div>
+
+</form>
+@section Scripts{
+
+    <partial name="_ValidationScriptsPartial" />
+
+}
